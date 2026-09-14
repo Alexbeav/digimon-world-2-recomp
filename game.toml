@@ -1,0 +1,56 @@
+# Autofilled by tools/new_project_layout/probe_disc.py from your legal dump.
+# Review before shipping. Runtime quirks / overlay seeds still need hand work.
+
+[game]
+name = "Digimon World 2"
+id = "SLUS-01193"
+players = 2
+exe = "disc/SLUS_011.93"
+disc = "disc/Digimon World 2 (USA).cue"
+load_address = "0x80010000"
+entry_pc = "0x80010D7C"
+text_size = "0x0009E800"
+stack_base = "0x801FFFF0"
+
+# Digests are for data Track 01 (first BINARY FILE / TRACK 01).
+[prepare_disc]
+out_dir = "disc"
+bin_name = "Digimon World 2 (USA).bin"
+cue_name = "Digimon World 2 (USA).cue"
+boot_exe = "SLUS_011.93"
+known_sizes = [461993952]
+known_md5 = [
+  "e8ee6810a33c45273800df07628d816b",
+]
+known_sha1 = [
+  "d9cb009bc0006e901d8ab1365f764ab71da02115",
+]
+known_crc32 = [
+  "b0cd9681",
+]
+
+[recompiler]
+bios_config = "psxrecomp/bios/SCPH1001.toml"
+seeds = "seeds/ghidra_funcs.txt"
+out_dir = "generated"
+strict = true
+
+[runtime]
+openbios = false
+window_title = "Digimon World 2 Recompiled"
+memcard_dir = "saves"
+overlay_cache = true
+
+[video]
+renderer = "opengl"
+aspect_ratio = "4:3"
+
+[controller]
+default_mode = "digital"
+
+# Online mount gate: digests + track count + optional TOC fingerprint
+# (see docs/NETPLAY.md).
+[netplay]
+require_cue = true
+required_tracks = 1
+required_disc_fp = "570e748d2987cf41d8555ac542e8311e8240ac9bc91fd5893a9b6d302786434b"
